@@ -1,3 +1,3 @@
-module github.com/blevesearch/segment
+module github.com/clipperhouse/segment
 
-go 1.13
+go 1.14
