@@ -236,7 +236,7 @@ func TestAdhocSegmentsWithType(t *testing.T) {
 
 func TestUnicodeSegments(t *testing.T) {
 
-	for _, test := range unicodeWordTests {
+	for _, test := range UnicodeWordTests {
 		rv := make([][]byte, 0)
 		scanner := bufio.NewScanner(bytes.NewReader(test.input))
 		// Set the split function for the scanning operation.
@@ -255,7 +255,7 @@ func TestUnicodeSegments(t *testing.T) {
 
 func TestUnicodeSegmentsSlowReader(t *testing.T) {
 
-	for i, test := range unicodeWordTests {
+	for i, test := range UnicodeWordTests {
 		rv := make([][]byte, 0)
 		segmenter := NewWordSegmenter(&slowReader{1, bytes.NewReader(test.input)})
 		for segmenter.Segment() {
