@@ -1,3 +1,5 @@
+This fork exports the test suites, and is used by https://github.com/clipperhouse/uax29.
+
 # segment
 
 A Go library for performing Unicode Text Segmentation
