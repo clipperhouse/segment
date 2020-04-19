@@ -238,7 +238,7 @@ func TestUnicodeSegments(t *testing.T) {
 
 	for _, test := range UnicodeWordTests {
 		rv := make([][]byte, 0)
-		scanner := bufio.NewScanner(bytes.NewReader(test.input))
+		scanner := bufio.NewScanner(bytes.NewReader(test.Input))
 		// Set the split function for the scanning operation.
 		scanner.Split(SplitWords)
 		for scanner.Scan() {
@@ -247,8 +247,8 @@ func TestUnicodeSegments(t *testing.T) {
 		if err := scanner.Err(); err != nil {
 			t.Fatal(err)
 		}
-		if !reflect.DeepEqual(rv, test.output) {
-			t.Fatalf("expected:\n%#v\ngot:\n%#v\nfor: '%s' comment: %s", test.output, rv, test.input, test.comment)
+		if !reflect.DeepEqual(rv, test.Output) {
+			t.Fatalf("expected:\n%#v\ngot:\n%#v\nfor: '%s' comment: %s", test.Output, rv, test.Input, test.Comment)
 		}
 	}
 }
@@ -257,15 +257,15 @@ func TestUnicodeSegmentsSlowReader(t *testing.T) {
 
 	for i, test := range UnicodeWordTests {
 		rv := make([][]byte, 0)
-		segmenter := NewWordSegmenter(&slowReader{1, bytes.NewReader(test.input)})
+		segmenter := NewWordSegmenter(&slowReader{1, bytes.NewReader(test.Input)})
 		for segmenter.Segment() {
 			rv = append(rv, segmenter.Bytes())
 		}
 		if err := segmenter.Err(); err != nil {
 			t.Fatal(err)
 		}
-		if !reflect.DeepEqual(rv, test.output) {
-			t.Fatalf("expected:\n%#v\ngot:\n%#v\nfor: %d '%s' comment: %s", test.output, rv, i, test.input, test.comment)
+		if !reflect.DeepEqual(rv, test.Output) {
+			t.Fatalf("expected:\n%#v\ngot:\n%#v\nfor: %d '%s' comment: %s", test.Output, rv, i, test.Input, test.Comment)
 		}
 	}
 }
